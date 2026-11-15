@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#173b35">
+<title>Growing in Love — A 1 John Reflection</title>
+<style>
+:root{--ink:#20332f;--muted:#64746f;--green:#24594d;--green2:#dcebe4;--cream:#f7f6f0;--card:#fff;--line:#dce3dd;--gold:#b58a43;--shadow:0 12px 34px rgba(27,55,47,.09)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--cream);color:var(--ink);font:16px/1.55 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+header{background:linear-gradient(120deg,#173b35,#2d6657);color:white;padding:28px 20px 24px}
+.head{max-width:1000px;margin:auto}
+h1{font:600 clamp(1.8rem,4vw,2.55rem)/1.15 Georgia,serif;margin:0 0 8px}
+header p{margin:0;color:#e1eee8;max-width:720px}
+main{max-width:1000px;margin:24px auto;padding:0 16px 48px}
+.intro{background:#edf3ed;border-left:4px solid var(--gold);padding:14px 17px;border-radius:9px;margin-bottom:20px;color:#40544c}
+.topbar{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin:18px 0}
+.progress-wrap{flex:1;min-width:190px}
+.progress-label{display:flex;justify-content:space-between;color:var(--muted);font-size:.9rem;margin-bottom:6px}
+.track{height:8px;background:#e2e8e2;border-radius:20px;overflow:hidden}
+.fill{height:100%;background:var(--green);width:0;transition:width .2s}
+select,button{font:inherit;border-radius:9px;border:1px solid var(--line);padding:10px 13px;background:white;color:var(--ink)}
+select{max-width:100%}
+button{cursor:pointer;font-weight:600}
+button:hover{filter:brightness(.97)}
+button:focus-visible,select:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid #b9d6c9;outline-offset:2px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);overflow:hidden}
+.card-head{padding:23px 24px 16px;border-bottom:1px solid var(--line)}
+.eyebrow{text-transform:uppercase;letter-spacing:.09em;font-size:.75rem;font-weight:700;color:var(--green);margin-bottom:5px}
+h2{font:600 clamp(1.4rem,3vw,1.9rem)/1.2 Georgia,serif;margin:0 0 9px}
+.description{color:#52645d;margin:0}
+.scripture{margin:18px 24px 0;padding:15px 17px;background:#f5f7f3;border-radius:10px;border-left:3px solid #91ad9e}
+.scripture strong{display:block;color:var(--green);margin-bottom:4px}
+.scripture small{display:block;color:var(--muted);margin-top:7px}
+.body{padding:22px 24px}
+.scale-title{font-weight:700;margin:0 0 3px}
+.scale-help{font-size:.9rem;color:var(--muted);margin:0 0 12px}
+.scale{display:flex;align-items:center;gap:12px}
+.scale input{width:100%;accent-color:var(--green)}
+.score{background:var(--green2);color:var(--green);font-weight:800;border-radius:10px;padding:5px 12px;min-width:42px;text-align:center}
+.scale-labels{display:flex;justify-content:space-between;color:var(--muted);font-size:.78rem;margin-top:2px}
+textarea{width:100%;min-height:88px;resize:vertical;border:1px solid var(--line);border-radius:10px;padding:11px 12px;font:inherit;color:var(--ink);background:#fff}
+.field{margin-top:19px}
+.field label{display:block;font-weight:700;margin-bottom:6px}
+.field .hint{font-size:.85rem;color:var(--muted);font-weight:400}
+.actions{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:18px 24px;border-top:1px solid var(--line);background:#fbfcfa}
+.actions .right{display:flex;gap:9px}
+.primary{background:var(--green);color:white;border-color:var(--green)}
+.quiet{background:transparent}
+.status{font-size:.83rem;color:var(--muted);margin:12px 2px 0;min-height:1.3em}
+.tools{display:flex;gap:9px;flex-wrap:wrap;margin-top:17px}
+.tools button{font-size:.9rem}
+.note{font-size:.86rem;color:var(--muted);margin-top:18px}
+@media(max-width:600px){
+header{padding:24px 17px}
+main{margin:17px auto;padding:0 12px 35px}
+.card-head{padding:19px 17px 14px}
+.scripture{margin:15px 17px 0}
+.body{padding:18px 17px}
+.actions{padding:15px 17px}
+.actions button{flex:1}
+.actions .right{display:flex;flex:1}
+.actions .right button{flex:1}
+.topbar{align-items:stretch}
+.topbar select{width:100%}
+}
+</style>
+</head>
+<body>
+<header>
+<div class="head">
+<h1>Growing in Love</h1>
+<p>A personal reflection on spiritual maturity through the letter of 1 John</p>
+</div>
+</header>
+
+<main>
+<div class="intro">
+<strong>A grace-centered reflection.</strong>
+This is not a performance score, a test of salvation, or a way to earn God’s love. It is an opportunity to notice where you are growing in response to God’s love, and where you would like to become more like Christ. Be honest and gracious with yourself.
+</div>
+
+<div class="topbar">
+<div class="progress-wrap">
+<div class="progress-label">
+<span>Reflection progress</span>
+<span id="progressText">1 of 48</span>
+</div>
+<div class="track"><div class="fill" id="progressFill"></div></div>
+</div>
+<select id="categorySelect" aria-label="Choose a dimension"></select>
+</div>
+
+<section class="card" aria-live="polite">
+<div class="card-head">
+<div class="eyebrow" id="categoryName"></div>
+<h2 id="indicatorTitle"></h2>
+<p class="description" id="indicatorDesc"></p>
+</div>
+
+<div class="scripture">
+<strong id="verseRef"></strong>
+<span id="verseText"></span>
+<small>ESV passage context · concise paraphrase, not a verbatim quotation. Read the referenced passage in your ESV Bible for the full wording and context.</small>
+</div>
+
+<div class="body">
+<p class="scale-title">How would you describe your growth in this area?</p>
+<p class="scale-help">Choose the point that best reflects your present experience. This is a reflection aid, not a grade.</p>
+
+<div class="scale">
+<input id="rating" type="range" min="1" max="5" step="1" value="3">
+<span class="score" id="score">3</span>
+</div>
+<div class="scale-labels">
+<span>Still developing</span>
+<span>Growing</span>
+<span>Consistent</span>
+</div>
+
+<div class="field">
+<label for="growth">1. Where have you seen growth?</label>
+<textarea id="growth" placeholder="Describe a recent example of growth or application."></textarea>
+</div>
+
+<div class="field">
+<label for="challenge">2. Where do you still need to grow?</label>
+<textarea id="challenge" placeholder="Describe an example that reveals an opportunity for further growth."></textarea>
+</div>
+
+<div class="field">
+<label for="next">3. What is one next step?</label>
+<textarea id="next" placeholder="Identify a practical step, prayer, conversation, or habit."></textarea>
+</div>
+</div>
+
+<div class="actions">
+<button id="prev" class="quiet">← Previous</button>
+<div class="right">
+<button id="next" class="primary">Next →</button>
+</div>
+</div>
+</section>
+
+<div class="status" id="status" role="status">Your reflections are saved automatically on this device.</div>
+
+<div class="tools">
+<button id="export">Export reflections (JSON)</button>
+<button id="clear">Clear all reflections</button>
+</div>
+
+<p class="note">Your entries are stored in this browser on this device. Export a backup if you want to keep a separate copy or move your reflections to another device.</p>
+</main>
+
+<script>
+const dimensions = [
+["Walking in the Light",[
+["Living openly before God","You seek to live honestly before God rather than conceal what is wrong.","1 John 1:5–7","God is light, with no darkness in him; walking in the light brings fellowship with him and one another."],
+["Practicing honesty about sin","You acknowledge your need for forgiveness rather than denying or minimizing sin.","1 John 1:8–10","John warns against claiming to be without sin and points to confession and God's faithfulness to forgive."],
+["Receiving Christ's cleansing","You rely on Jesus for forgiveness and cleansing, not on your own ability to make yourself right.","1 John 1:7, 9","Jesus' blood cleanses from sin, and God is faithful and just to forgive those who confess."],
+["Choosing truth over appearances","You value truth in your inner life and outward conduct, even when honesty is uncomfortable.","1 John 1:6; 2:4","A life that claims fellowship with God should be consistent with truth rather than darkness."],
+["Responding to conviction","When you recognize wrongdoing, you turn back to God instead of becoming defensive or indifferent.","1 John 1:9; 2:1–2","Confession and Christ's advocacy provide the way back when believers sin."],
+["Growing in fellowship","You pursue genuine fellowship with God and with other believers.","1 John 1:3, 6–7","The message of the apostles invites believers into fellowship with the Father, the Son, and one another."]
+]],
+
+["Obedience",[
+["Taking God's commands seriously","You seek to align everyday choices with what God has revealed.","1 John 2:3–5","Knowing God is shown through keeping his commands; his word is brought to completion in those who keep it."],
+["Obeying from love","Your obedience increasingly grows from love for God rather than mere duty or fear.","1 John 5:2–3","Love for God is expressed in keeping his commandments, which John describes as not burdensome."],
+["Following Jesus' example","You look to Jesus as the pattern for how to live and treat others.","1 John 2:6","Those who say they abide in Christ are called to walk in the same way he walked."],
+["Applying Scripture in daily life","You make practical decisions in light of Scripture, not simply agree with it in principle.","1 John 2:5; 3:18","God's word shapes conduct, and love is to be expressed in actions and truth."],
+["Persevering in faithfulness","You continue seeking to obey God when it is difficult or inconvenient.","1 John 2:17; 5:4","The world and its desires pass away, but the one who does God's will remains; faith overcomes the world."],
+["Growing consistency between belief and action","Your conduct increasingly reflects what you say you believe about God.","1 John 2:3–6","John connects knowing and abiding in God with keeping his word and following Christ's example."]
+]],
+
+["Loving Others",[
+["Loving fellow believers","You show sincere care and goodwill toward other Christians.","1 John 3:11, 14","The message from the beginning is to love one another; love is evidence of passing from death to life."],
+["Putting love into action","You express care through practical help, not words alone.","1 John 3:16–18","Christ's self-giving love becomes the model for tangible care and love in action and truth."],
+["Being generous with what you have","You are willing to share resources and respond when you see a brother or sister in need.","1 John 3:17","John challenges believers who have resources but close their hearts to someone in need."],
+["Loving beyond convenience","You seek the good of others even when it requires patience, sacrifice, or effort.","1 John 3:16; 4:10–11","God's initiating love and Christ's self-giving example shape how believers love one another."],
+["Rejecting resentment and hatred","You work toward forgiveness and refuse to nurture hostility toward others.","1 John 2:9–11; 3:15","Hatred belongs to darkness; love for a brother or sister is a mark of walking in the light."],
+["Growing in love as evidence of knowing God","Your love for people increasingly reflects the love you have received from God.","1 John 4:7–12","Love comes from God; those who know him are called to love one another as he has loved them."]
+]],
+
+["Spiritual Discernment",[
+["Testing spiritual claims","You evaluate spiritual teaching rather than accepting every claim at face value.","1 John 4:1","John urges believers to test the spirits because many false prophets have gone into the world."],
+["Confessing Jesus Christ rightly","You hold to the truth about Jesus Christ coming in the flesh.","1 John 4:2–3","John identifies confession of Jesus Christ come in the flesh as a key test of the Spirit of God."],
+["Recognizing truth and error","You grow in the ability to distinguish teaching that is faithful to Christ from teaching that is not.","1 John 2:18–23; 4:5–6","John contrasts the truth about the Son with denial and urges believers to listen to the apostolic witness."],
+["Listening to the apostolic message","You give serious attention to the teaching handed down by Jesus' apostles.","1 John 4:6","John describes listening to the apostolic witness as a way to distinguish the Spirit of truth from error."],
+["Relying on the Spirit's witness","You depend on the Holy Spirit to help you remain in the truth about Christ.","1 John 2:20, 27","John reminds believers of the anointing they have received, which helps them abide in the truth."],
+["Holding together truth and love","You pursue sound belief without becoming harsh, and genuine love without abandoning truth.","1 John 3:18–19; 4:1–3","John joins love expressed in truth with discernment about the message concerning Jesus."]
+]],
+
+["Abiding in Christ",[
+["Remaining in Christ","You intentionally cultivate an ongoing relationship with Jesus rather than treating faith as occasional.","1 John 2:24–28","John calls believers to let the message they heard from the beginning abide in them and to remain in the Son and Father."],
+["Depending on Christ rather than self","You recognize your need for Jesus and rely on him in daily life.","1 John 2:1–2; 5:11–12","Jesus is the advocate and the source of eternal life; life is found in the Son."],
+["Making room for God's word","You allow the message of Christ to shape your thoughts, choices, and priorities.","1 John 2:14, 24","John describes God's word abiding in believers and urges them to let the original message remain in them."],
+["Living with awareness of God's presence","You seek to live each day conscious that you belong to God and are known by him.","1 John 3:24; 4:13","Abiding in God is associated with the Spirit he has given to believers."],
+["Praying with confidence in God's will","You bring your requests to God while seeking what accords with his will.","1 John 5:14–15","John encourages confidence that God hears requests made according to his will."],
+["Keeping your life centered on Jesus","You resist allowing other priorities or attachments to take the place of Christ.","1 John 5:20–21","John concludes by pointing to the true God and eternal life in his Son and warning against idols."]
+]],
+
+["Christlike Character",[
+["Growing in humility","You recognize that your life and hope depend on God's grace, not personal superiority.","1 John 1:8–9; 2:1","John rejects claims of sinlessness and points believers to Christ's advocacy and forgiveness."],
+["Practicing compassion","You notice the needs and struggles of others and respond with care.","1 John 3:17–18","Love is demonstrated by an open heart and practical action toward those in need."],
+["Choosing patience and gentleness","You increasingly respond to others in ways shaped by Christlike love.","1 John 4:7–12","Because love originates in God and is revealed through Christ, believers are called to love one another."],
+["Pursuing purity of heart and conduct","You seek a life increasingly consistent with the hope of becoming like Christ.","1 John 3:2–3","The hope of seeing Christ as he is leads believers to purify themselves as he is pure."],
+["Acting with integrity","You seek to be trustworthy in private as well as in public.","1 John 1:6; 3:18","Walking in the light and loving in deed and truth call for integrity beyond appearances."],
+["Reflecting God's love in relationships","Your relationships increasingly display the self-giving love that God has shown you.","1 John 4:9–12","God's sending of his Son reveals love and becomes the pattern for loving one another."]
+]],
+
+["Overcoming the World",[
+["Resisting worldly values","You are learning not to let status, possessions, or self-centered desires direct your life.","1 John 2:15–17","John warns against loving the world and its desires, which are passing away."],
+["Prioritizing God's will","You seek what lasts and matters to God over temporary attractions.","1 John 2:17","The world and its desires pass away, while the one who does God's will abides forever."],
+["Standing firm in faith","You trust God when beliefs and values are challenged by the surrounding culture.","1 John 5:4–5","Faith is described as the victory that overcomes the world, grounded in believing Jesus is the Son of God."],
+["Living from your identity in God","You remember that you belong to God even when you feel pressure to conform.","1 John 3:1; 4:4","Believers are called God's children, and the one in them is greater than the one in the world."],
+["Guarding against idols","You notice and turn away from anything that competes with God for your deepest loyalty.","1 John 5:21","John's final instruction is to keep away from idols."],
+["Loving what God loves","Your priorities increasingly reflect God's character and purposes rather than the world's approval.","1 John 2:15–17; 4:7–8","John contrasts love for the world with love from the Father and teaches that love comes from God."]
+]],
+
+["Confidence, Hope, and Assurance",[
+["Resting in God's love","You increasingly receive and trust the love God has shown through Jesus.","1 John 4:9–10, 16","God's love is made known by sending his Son; believers are invited to know and believe that love."],
+["Living as a child of God","You find your identity in being loved and called God's child.","1 John 3:1–2","John marvels at the Father's love in calling believers his children and points to the hope of being like Christ."],
+["Having confidence before God","You approach God with growing trust, grounded in Christ rather than your own perfection.","1 John 3:19–21; 4:17","Love expressed in truth can reassure the heart, and God's love gives confidence for the day of judgment."],
+["Growing in assurance of eternal life","You place your confidence in the life God gives through his Son.","1 John 5:11–13","John writes so believers may know they have eternal life through the Son."],
+["Choosing hope over fear","You allow God's perfecting love to shape your response to fear.","1 John 4:17–18","John teaches that mature love gives confidence and that perfect love casts out fear."],
+["Giving thanks for God's faithfulness","You regularly recognize and give thanks for the life, forgiveness, and hope found in Christ.","1 John 1:9; 5:11–13","God is faithful to forgive, and he has given eternal life in his Son."]
+]]
+];
+
+const items = dimensions.flatMap((d,di)=>
+  d[1].map((x,ii)=>({
+    category:d[0],
+    categoryIndex:di,
+    title:x[0],
+    description:x[1],
+    ref:x[2],
+    text:x[3],
+    key:`${di}-${ii}`
+  }))
+);
+
+const STORE="growingInLove1John_v2";
+let saved={};
+let index=0;
+
+try {
+  saved=JSON.parse(localStorage.getItem(STORE)||"{}");
+  index=Math.min(47,Math.max(0,Number(saved.__index)||0));
+} catch(e) {
+  saved={};
+}
+
+const $=id=>document.getElementById(id);
+
+function persist(){
+  saved.__index=index;
+  try {
+    localStorage.setItem(STORE,JSON.stringify(saved));
+    $("status").textContent="Saved on this device · "+
+      new Date().toLocaleTimeString([],{hour:"numeric",minute:"2-digit"});
+  } catch(e) {
+    $("status").textContent="Could not save in this browser. Use Export to keep a copy.";
+  }
+}
+
+function load(){
+  const it=items[index];
+  const v=saved[it.key]||{};
+
+  $("categoryName").textContent=it.category;
+  $("indicatorTitle").textContent=(index+1)+". "+it.title;
+  $("indicatorDesc").textContent=it.description;
+  $("verseRef").textContent=it.ref;
+  $("verseText").textContent=it.text;
+
+  $("rating").value=v.rating||3;
+  $("score").textContent=v.rating||3;
+
+  $("growth").value=v.growth||"";
+  $("challenge").value=v.challenge||"";
+  $("next").value=v.next||"";
+
+  $("progressText").textContent=(index+1)+" of 48";
+  $("progressFill").style.width=((index+1)/48*100)+"%";
+
+  $("prev").disabled=index===0;
+  $("next").textContent=index===47?"Finish ✓":"Next →";
+  $("categorySelect").value=String(it.categoryIndex);
+}
+
+function saveCurrent(){
+  const it=items[index];
+  saved[it.key]={
+    rating:Number($("rating").value),
+    growth:$("growth").value,
+    challenge:$("challenge").value,
+    next:$("next").value
+  };
+  persist();
+}
+
+function move(n){
+  saveCurrent();
+  index=Math.max(0,Math.min(47,index+n));
+  load();
+  persist();
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+const sel=$("categorySelect");
+
+dimensions.forEach((d,i)=>{
+  let o=document.createElement("option");
+  o.value=i;
+  o.textContent=d[0];
+  sel.appendChild(o);
+});
+
+sel.addEventListener("change",()=>{
+  saveCurrent();
+  const dest=items.findIndex(x=>x.categoryIndex===Number(sel.value));
+  index=dest;
+  load();
+  persist();
+});
+
+["rating","growth","challenge","next"].forEach(id=>{
+  $(id).addEventListener("input",()=>{
+    if(id==="rating") $("score").textContent=$("rating").value;
+    saveCurrent();
+  });
+});
+
+$("prev").addEventListener("click",()=>move(-1));
+$("next").addEventListener("click",()=>move(1));
+
+$("export").addEventListener("click",()=>{
+  saveCurrent();
+
+  const out={
+    title:"Growing in Love — A 1 John Reflection",
+    exportedAt:new Date().toISOString(),
+    reflections:items.map(it=>({
+      category:it.category,
+      indicator:it.title,
+      scripture:it.ref,
+      ...(saved[it.key]||{
+        rating:3,
+        growth:"",
+        challenge:"",
+        next:""
+      })
+    }))
+  };
+
+  const blob=new Blob(
+    [JSON.stringify(out,null,2)],
+    {type:"application/json"}
+  );
+
+  const a=document.createElement("a");
+  a.href=URL.createObjectURL(blob);
+  a.download="growing-in-love-reflections.json";
+  a.click();
+  URL.revokeObjectURL(a.href);
+
+  $("status").textContent="Your reflection file has been exported.";
+});
+
+$("clear").addEventListener("click",()=>{
+  if(confirm("Clear all 48 ratings and written reflections from this browser? This cannot be undone unless you exported a backup.")){
+    saved={};
+    index=0;
+    persist();
+    load();
+    $("status").textContent="All reflections have been cleared.";
+  }
+});
+
+load();
+persist();
+</script>
+</body>
+</html>
